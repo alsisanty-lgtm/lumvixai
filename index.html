@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUMVIX AI — Automatización Inteligente para Negocios</title>
+<meta name="description" content="Agentes de inteligencia artificial para WhatsApp, apps a medida y automatización para negocios. Responde 24/7, califica clientes y agenda citas solo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #25d366;
+    --green-dim: rgba(37,211,102,0.12);
+    --purple: #7b2fff;
+    --blue: #00c2ff;
+    --bg: #050510;
+    --bg2: #0a0a1f;
+    --text: #ffffff;
+    --text-muted: #6666aa;
+    --border: rgba(37,211,102,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* Grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(37,211,102,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(37,211,102,0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(5,5,16,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .nav-logo-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .nav-logo-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 3px;
+  }
+
+  .nav-logo-sub {
+    font-size: 9px;
+    color: var(--green);
+    letter-spacing: 2px;
+    display: block;
+    margin-top: -2px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 1px;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--green); }
+
+  .nav-cta {
+    background: transparent;
+    border: 1px solid var(--green);
+    color: var(--green);
+    padding: 10px 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+
+  .nav-cta:hover {
+    background: var(--green);
+    color: var(--bg);
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 40px 80px;
+    position: relative;
+    text-align: center;
+  }
+
+  .hero-orb1 {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(37,211,102,0.08) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero-orb2 {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(123,47,255,0.06) 0%, transparent 70%);
+    top: 20%;
+    right: 10%;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--border);
+    padding: 6px 16px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--green);
+    margin-bottom: 40px;
+    font-family: 'Space Mono', monospace;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero h1 {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 span { color: var(--green); }
+
+  .hero p {
+    font-size: 18px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 48px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--green);
+    color: var(--bg);
+    padding: 16px 36px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: #1db954;
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    padding: 16px 36px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    letter-spacing: 1px;
+    border: 1px solid rgba(255,255,255,0.15);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--green);
+    color: var(--green);
+  }
+
+  /* STATS */
+  .stats {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 0;
+    justify-content: center;
+    margin-top: 80px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stat {
+    padding: 32px 60px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+
+  .stat:last-child { border-right: none; }
+
+  .stat-number {
+    font-family: 'Space Mono', monospace;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--green);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    margin-top: 4px;
+  }
+
+  /* SERVICES */
+  .section {
+    padding: 100px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--green);
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+  }
+
+  .section h2 {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .section h2 span { color: var(--green); }
+
+  .section-sub {
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 500px;
+    margin-bottom: 64px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .service-card {
+    background: var(--bg);
+    padding: 48px 40px;
+    transition: background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--green);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-card:hover { background: var(--bg2); }
+
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 24px;
+  }
+
+  .service-number {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--green);
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    opacity: 0.6;
+  }
+
+  .service-card h3 {
+    font-family: 'Space Mono', monospace;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .service-card p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .service-tag {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--green);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* HOW IT WORKS */
+  .how-section {
+    padding: 100px 40px;
+    background: var(--bg2);
+    position: relative;
+    z-index: 1;
+  }
+
+  .how-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    margin-top: 64px;
+  }
+
+  .step {
+    position: relative;
+  }
+
+  .step-number {
+    font-family: 'Space Mono', monospace;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--green);
+    opacity: 0.15;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .step h3 {
+    font-family: 'Space Mono', monospace;
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+
+  .step p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  /* PRICING */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 64px;
+  }
+
+  .pricing-card {
+    background: var(--bg);
+    padding: 48px 40px;
+    position: relative;
+  }
+
+  .pricing-card.featured {
+    background: var(--bg2);
+    border: 1px solid var(--green);
+    margin: -1px;
+  }
+
+  .pricing-badge {
+    position: absolute;
+    top: -1px;
+    right: 40px;
+    background: var(--green);
+    color: var(--bg);
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    padding: 4px 12px;
+  }
+
+  .pricing-plan {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 3px;
+    margin-bottom: 24px;
+  }
+
+  .pricing-price {
+    font-family: 'Space Mono', monospace;
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .pricing-price span {
+    font-size: 16px;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  .pricing-desc {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
+  .pricing-features {
+    list-style: none;
+    margin-bottom: 40px;
+  }
+
+  .pricing-features li {
+    font-size: 13px;
+    color: var(--text-muted);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .pricing-features li::before {
+    content: '→';
+    color: var(--green);
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+
+  /* CTA SECTION */
+  .cta-section {
+    padding: 120px 40px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+  }
+
+  .cta-section h2 {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(28px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .cta-section h2 span { color: var(--green); }
+
+  .cta-section p {
+    color: var(--text-muted);
+    font-size: 16px;
+    margin-bottom: 48px;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 40px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-brand {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--text-muted);
+  }
+
+  .footer-brand span { color: var(--green); }
+
+  .footer-links {
+    display: flex;
+    gap: 32px;
+  }
+
+  .footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 1px;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--green); }
+
+  .footer-copy {
+    color: var(--text-muted);
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+
+  /* WHATSAPP FLOAT */
+  .wa-float {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 200;
+    width: 56px;
+    height: 56px;
+    background: var(--green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    transition: transform 0.2s;
+  }
+
+  .wa-float:hover { transform: scale(1.1); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-content { animation: fadeUp 0.8s ease forwards; }
+  .hero-tag { animation: fadeUp 0.6s ease forwards; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 20px 60px; }
+    .stat { padding: 24px 32px; }
+    .stat-number { font-size: 28px; }
+    .section { padding: 60px 20px; }
+    .how-section { padding: 60px 20px; }
+    .cta-section { padding: 80px 20px; }
+    footer { padding: 32px 20px; flex-direction: column; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg class="nav-logo-icon" viewBox="0 0 36 36" fill="none">
+      <polygon points="18,4 30,11 30,25 18,32 6,25 6,11" fill="#0d1a0f" stroke="#25d366" stroke-width="1.2"/>
+      <text x="10" y="24" fill="white" font-family="monospace" font-weight="700" font-size="16">L</text>
+      <circle cx="17" cy="8" r="2.5" fill="#25d366"/>
+      <circle cx="17" cy="8" r="1.2" fill="#050510"/>
+    </svg>
+    <div>
+      <span class="nav-logo-text">LUMVIX</span>
+      <span class="nav-logo-sub">ARTIFICIAL INTELLIGENCE</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#como-funciona">Cómo funciona</a></li>
+    <li><a href="#precios">Precios</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="https://wa.me/34602504677" class="nav-cta">PRUEBA GRATIS</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-orb1"></div>
+  <div class="hero-orb2"></div>
+  <div class="hero-content">
+    <div class="hero-tag">IA · 24/7 · AUTOMATIZACIÓN</div>
+    <h1>Tu negocio trabajando<br><span>mientras duermes.</span></h1>
+    <p>Agentes de inteligencia artificial que responden en WhatsApp, califican clientes y agendan citas solos. Sin contratar a nadie, sin perder ni una consulta.</p>
+    <div class="hero-buttons">
+      <a href="https://wa.me/34602504677" class="btn-primary">PRUEBA GRATIS 15 DÍAS</a>
+      <a href="#servicios" class="btn-secondary">VER SERVICIOS</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <span class="stat-number">24/7</span>
+    <span class="stat-label">DISPONIBILIDAD</span>
+  </div>
+  <div class="stat">
+    <span class="stat-number">+30%</span>
+    <span class="stat-label">MÁS CITAS</span>
+  </div>
+  <div class="stat">
+    <span class="stat-number">15</span>
+    <span class="stat-label">DÍAS GRATIS</span>
+  </div>
+  <div class="stat">
+    <span class="stat-number">0€</span>
+    <span class="stat-label">PARA EMPEZAR</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="section" id="servicios">
+  <div class="section-tag">// SERVICIOS</div>
+  <h2>Todo lo que necesita<br><span>tu negocio.</span></h2>
+  <p class="section-sub">Soluciones de inteligencia artificial adaptadas a cada tipo de negocio. Sin tecnicismos, sin complicaciones.</p>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-number">01</div>
+      <h3>AGENTE WHATSAPP IA</h3>
+      <p>Tu WhatsApp responde automáticamente, califica si el cliente es serio y agenda cita en tu calendario. Sin intervención humana.</p>
+      <span class="service-tag">INMOBILIARIAS · CLÍNICAS · TALLERES</span>
+    </div>
+    <div class="service-card">
+      <div class="service-number">02</div>
+      <h3>APPS A MEDIDA</h3>
+      <p>Aplicaciones web y móviles personalizadas para tu negocio. Desde gestión interna hasta plataformas de venta online.</p>
+      <span class="service-tag">WEB · MÓVIL · DASHBOARD</span>
+    </div>
+    <div class="service-card">
+      <div class="service-number">03</div>
+      <h3>AUTOMATIZACIÓN DE PROCESOS</h3>
+      <p>Identificamos las tareas repetitivas de tu negocio y las automatizamos. Más tiempo para lo que importa.</p>
+      <span class="service-tag">WORKFLOWS · CRM · REPORTES</span>
+    </div>
+    <div class="service-card">
+      <div class="service-number">04</div>
+      <h3>AGENTES IA PERSONALIZADOS</h3>
+      <p>Creamos agentes de inteligencia artificial entrenados específicamente para tu sector, tu tono y tus clientes.</p>
+      <span class="service-tag">IA · CLAUDE · GPT</span>
+    </div>
+    <div class="service-card">
+      <div class="service-number">05</div>
+      <h3>INTEGRACIÓN CON TUS SISTEMAS</h3>
+      <p>Conectamos el agente con tu CRM, calendario, email y cualquier herramienta que ya uses en tu negocio.</p>
+      <span class="service-tag">API · ZAPIER · CALENDLY</span>
+    </div>
+    <div class="service-card">
+      <div class="service-number">06</div>
+      <h3>SOPORTE Y MANTENIMIENTO</h3>
+      <p>Nos encargamos de todo. Actualizaciones, mejoras y soporte técnico incluidos en todos los planes.</p>
+      <span class="service-tag">SOPORTE · UPDATES · 24H</span>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<div class="how-section" id="como-funciona">
+  <div class="how-inner">
+    <div class="section-tag">// CÓMO FUNCIONA</div>
+    <h2>En marcha en <span>menos de 48h.</span></h2>
+    <p class="section-sub">Sin tecnicismos, sin que tengas que tocar nada. Nosotros lo configuramos todo.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">01</div>
+        <h3>NOS CONTACTAS</h3>
+        <p>Escríbenos por WhatsApp y nos cuentas en qué consiste tu negocio. 10 minutos de conversación.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">02</div>
+        <h3>LO CONFIGURAMOS</h3>
+        <p>Personalizamos el agente con el nombre de tu negocio, tus servicios y tu tono. Sin que toques nada.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">03</div>
+        <h3>PRUEBA 15 DÍAS</h3>
+        <p>El agente trabaja en tu negocio gratis durante 15 días. Tú decides si quieres continuar.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">04</div>
+        <h3>DECIDES SIN PRESIÓN</h3>
+        <p>Si te convence, seguimos. Si no, lo desactivamos sin coste. Sin permanencia, sin letra pequeña.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<section class="section" id="precios">
+  <div class="section-tag">// PRECIOS</div>
+  <h2>Transparente<br><span>desde el primer día.</span></h2>
+  <p class="section-sub">Sin sorpresas. Sin permanencia. Sin letra pequeña.</p>
+
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-plan">PLAN BÁSICO</div>
+      <div class="pricing-price">199€ <span>/ mes</span></div>
+      <p class="pricing-desc">Para negocios que quieren automatizar su WhatsApp y no perder ni una consulta.</p>
+      <ul class="pricing-features">
+        <li>Agente IA 24/7 en WhatsApp</li>
+        <li>Calificación automática de leads</li>
+        <li>Agenda de citas integrada</li>
+        <li>1 número de WhatsApp</li>
+        <li>Soporte por WhatsApp</li>
+      </ul>
+      <a href="https://wa.me/34602504677" class="btn-secondary" style="display:block;text-align:center;">EMPEZAR GRATIS</a>
+    </div>
+    <div class="pricing-card featured">
+      <div class="pricing-badge">MÁS POPULAR</div>
+      <div class="pricing-plan">PLAN PRO</div>
+      <div class="pricing-price">299€ <span>/ mes</span></div>
+      <p class="pricing-desc">Para negocios que quieren escalar y tener control total de sus leads y citas.</p>
+      <ul class="pricing-features">
+        <li>Todo lo del Plan Básico</li>
+        <li>2 números de WhatsApp</li>
+        <li>Informes mensuales de leads</li>
+        <li>Personalización avanzada</li>
+        <li>Soporte prioritario 24h</li>
+      </ul>
+      <a href="https://wa.me/34602504677" class="btn-primary" style="display:block;text-align:center;">EMPEZAR GRATIS</a>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-plan">A MEDIDA</div>
+      <div class="pricing-price" style="font-size:32px;">Hablamos</div>
+      <p class="pricing-desc">Apps personalizadas, integraciones complejas y soluciones IA a medida para tu negocio.</p>
+      <ul class="pricing-features">
+        <li>Apps web y móvil a medida</li>
+        <li>Integración con tus sistemas</li>
+        <li>Agentes IA personalizados</li>
+        <li>Automatización de procesos</li>
+        <li>Presupuesto sin compromiso</li>
+      </ul>
+      <a href="https://wa.me/34602504677" class="btn-secondary" style="display:block;text-align:center;">PEDIR PRESUPUESTO</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contacto">
+  <h2>¿Listo para que tu negocio<br><span>trabaje solo?</span></h2>
+  <p>Prueba gratis 15 días. Sin coste, sin permanencia, sin complicaciones.</p>
+  <a href="https://wa.me/34602504677" class="btn-primary">ESCRIBIR POR WHATSAPP</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand"><span>LUMVIX</span> AI · Almería, España</div>
+  <div class="footer-links">
+    <a href="mailto:lumvixai@gmail.com">lumvixai@gmail.com</a>
+    <a href="https://wa.me/34602504677">+34 602 50 46 77</a>
+  </div>
+  <div class="footer-copy">© 2026 LUMVIX AI</div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/34602504677" class="wa-float" title="Contactar por WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+</body>
+</html>
