@@ -310,17 +310,58 @@ footer { background: var(--ink); padding: 48px; }
       <div class="chat-top">
         <div class="chat-ava">L</div>
         <div>
-          <div class="chat-name">LUMVIX AI &middot; Tu negocio</div>
-          <div class="chat-online">&#9679; En linea</div>
+          <div class="chat-name">LUMVIX AI <svg style="display:inline;vertical-align:middle;margin-left:3px" width="14" height="14" viewBox="0 0 24 24" fill="#25d366"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
+          <div class="chat-online">&#9679; En linea ahora</div>
         </div>
       </div>
-      <div class="chat-msgs">
-        <div class="bub bub-in">Hola, busco piso en El Ejido, unos 150.000&euro;<div class="bub-time">10:23</div></div>
-        <div class="bub bub-out">&iexcl;Hola! &iquest;Me dices tu nombre para ayudarte mejor?<div class="bub-time">10:23</div></div>
-        <div class="bub bub-in">Soy Carlos, necesito algo pronto<div class="bub-time">10:24</div></div>
-        <div class="dots"><span></span><span></span><span></span></div>
+      <div class="chat-msgs" id="chatMsgs">
       </div>
     </div>
+    <style>
+    .chat-msgs { height: 300px; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; padding: 16px; }
+    .bub { opacity: 0; transform: translateY(10px); transition: opacity 0.35s ease, transform 0.35s ease; flex-shrink: 0; }
+    .bub.visible { opacity: 1; transform: translateY(0); }
+    </style>
+    <script>
+    (function(){
+      const msgs = [
+        { type: 'in', text: 'Hola buenas noches', time: '22:57' },
+        { type: 'out', text: '&#161;Hola! Buenas noches, bienvenido a LUMVIX AI. Soy tu asistente virtual para temas inmobiliarios. &#191;Podrias decirme tu nombre?', time: '22:57' },
+        { type: 'in', text: 'Santi', time: '22:57' },
+        { type: 'out', text: '&#161;Perfecto Santi! &#191;Estas buscando comprar, vender o alquilar una vivienda en Almeria?', time: '22:57' },
+        { type: 'in', text: 'Estoy buscando comprar', time: '22:57' },
+        { type: 'out', text: 'Genial Santi. &#191;En que zona de Almeria te gustaria buscar y cual seria tu presupuesto aproximado?', time: '22:58' },
+        { type: 'in', text: 'Seria por la zona de El Ejido', time: '22:58' },
+        { type: 'out', text: 'Perfecto, El Ejido es una zona muy demandada. &#191;Cual seria tu presupuesto aproximado?', time: '22:58' },
+        { type: 'in', text: 'Sobre los 150.000&#8364;', time: '22:58' },
+        { type: 'out', text: 'Perfecto Santi, con 150.000&#8364; tienes buenas opciones en El Ejido. Para ahorrarte tiempo te recomiendo hablar 15 minutos con nuestro agente. Reserva tu cita: https://cal.com/lumvix-ai-kfgodg/consulta', time: '22:59' },
+      ];
+      const container = document.getElementById('chatMsgs');
+      let i = 0;
+      let cycle = 0;
+      function showNext() {
+        if (i < msgs.length) {
+          const m = msgs[i];
+          const div = document.createElement('div');
+          div.className = 'bub bub-' + m.type;
+          div.innerHTML = m.text + '<div class="bub-time">' + m.time + '</div>';
+          container.appendChild(div);
+          container.scrollTop = container.scrollHeight;
+          setTimeout(() => div.classList.add('visible'), 50);
+          i++;
+          const delay = m.type === 'out' ? 4000 : 3000;
+          setTimeout(showNext, delay);
+        } else {
+          setTimeout(() => {
+            container.innerHTML = '';
+            i = 0;
+            showNext();
+          }, 5000);
+        }
+      }
+      setTimeout(showNext, 1200);
+    })();
+    </script>
     <div class="hero-ticker">
       <div class="ticker-inner">
         <span>WhatsApp IA</span><span class="acc">&middot;</span>
@@ -472,7 +513,7 @@ footer { background: var(--ink); padding: 48px; }
       <div class="why-card">
         <div class="why-ico"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
         <h3>Somos de Almeria</h3>
-        <p>Conocemos el mercado local, hablamos con los dueños de negocios cara a cara y entendemos lo que necesitan. No somos una empresa lejana que vende software generico.</p>
+        <p>Conocemos el mercado local, hablamos con los duenos de negocios cara a cara y entendemos lo que necesitan. No somos una empresa lejana que vende software generico.</p>
       </div>
       <div class="why-card">
         <div class="why-ico"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></div>
@@ -491,7 +532,7 @@ footer { background: var(--ink); padding: 48px; }
       </div>
       <div class="why-card">
         <div class="why-ico"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg></div>
-        <h3>Soporte real en español</h3>
+        <h3>Soporte real en espanol</h3>
         <p>Cuando tienes un problema nos escribes por WhatsApp y te respondemos. Sin tickets, sin chatbots de soporte, sin esperar dias. Soporte humano y cercano.</p>
       </div>
       <div class="why-card">
@@ -628,10 +669,10 @@ footer { background: var(--ink); padding: 48px; }
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">
-          <span class="faq-qt">&iquest;El agente responde bien en español?</span>
+          <span class="faq-qt">&iquest;El agente responde bien en espanol?</span>
           <div class="faq-ico">+</div>
         </div>
-        <div class="faq-a"><p>Si, responde en español de forma natural, con el tono de tu negocio. No suena a robot ni usa respuestas genericas, esta configurado especificamente para tu sector y tus clientes.</p></div>
+        <div class="faq-a"><p>Si, responde en espanol de forma natural, con el tono de tu negocio. No suena a robot ni usa respuestas genericas, esta configurado especificamente para tu sector y tus clientes.</p></div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">
