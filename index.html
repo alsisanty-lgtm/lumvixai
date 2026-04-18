@@ -140,7 +140,7 @@ nav::before { content: ''; position: absolute; inset: 0; background: rgba(247,24
 .how-step p { font-size: 14px; color: rgba(255,255,255,0.4); line-height: 1.7; font-weight: 300; }
 
 /* SECTORS */
-.sec-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 2px; background: var(--border); border: 1px solid var(--border); margin-top: 64px; }
+.sec-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--border); border: 1px solid var(--border); margin-top: 64px; }
 .sec-card { background: var(--paper); padding: 36px 28px; transition: all 0.3s; }
 .sec-card:hover { background: var(--ink); }
 .sec-emoji { font-size: 28px; display: block; margin-bottom: 12px; }
@@ -148,6 +148,14 @@ nav::before { content: ''; position: absolute; inset: 0; background: rgba(247,24
 .sec-card p { font-size: 12px; color: var(--mid); line-height: 1.6; font-weight: 300; transition: color 0.3s; }
 .sec-card:hover h3 { color: white; }
 .sec-card:hover p { color: rgba(255,255,255,0.4); }
+.sec-card.special { background: var(--ink); grid-column: span 4; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 40px; padding: 40px 48px; border: none; }
+.sec-card.special:hover { background: var(--accent2); }
+.sec-card.special h3 { color: white; font-size: 22px; }
+.sec-card.special p { color: rgba(255,255,255,0.5); font-size: 14px; }
+.sec-card.special .sec-emoji { font-size: 40px; }
+.special-right { display: flex; align-items: center; justify-content: flex-end; }
+.special-btn { font-family: "Syne", sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 1px; padding: 14px 28px; background: var(--accent); color: white; text-decoration: none; border-radius: 2px; transition: background 0.2s; white-space: nowrap; }
+.special-btn:hover { background: white; color: var(--ink); }
 
 /* WHY */
 .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.06); margin-top: 64px; }
@@ -425,13 +433,29 @@ footer { background: var(--ink); padding: 48px; }
     </div>
     <p class="sec-p">Adaptado a los sectores mas comunes de Almeria y toda Espana.</p>
   </div>
-  <div class="sec-grid">
-    <div class="sec-card"><span class="sec-emoji">&#127968;</span><h3>Inmobiliarias</h3><p>Califica compradores, agenda visitas automaticamente.</p></div>
+  <div class="sec-grid" style="grid-template-columns: repeat(4, 1fr);">
+    <div class="sec-card"><span class="sec-emoji">&#127968;</span><h3>Inmobiliarias</h3><p>Califica compradores y agenda visitas automaticamente.</p></div>
     <div class="sec-card"><span class="sec-emoji">&#129463;</span><h3>Clinicas dentales</h3><p>Detecta urgencias y llena tu agenda sin esfuerzo.</p></div>
-    <div class="sec-card"><span class="sec-emoji">&#128295;</span><h3>Talleres</h3><p>Recibe averias y agenda entradas al taller en segundos.</p></div>
-    <div class="sec-card"><span class="sec-emoji">&#128134;</span><h3>Estetica</h3><p>Gestiona citas de tratamientos automaticamente.</p></div>
+    <div class="sec-card"><span class="sec-emoji">&#128295;</span><h3>Talleres motos y coches</h3><p>Recibe averias y agenda entradas al taller en segundos.</p></div>
+    <div class="sec-card"><span class="sec-emoji">&#128134;</span><h3>Estetica y fisioterapia</h3><p>Gestiona citas de tratamientos automaticamente.</p></div>
     <div class="sec-card"><span class="sec-emoji">&#128218;</span><h3>Academias</h3><p>Responde consultas y gestiona matriculas desde WhatsApp.</p></div>
-    <div class="sec-card"><span class="sec-emoji">&#127978;</span><h3>Comercios</h3><p>Atiende consultas de productos y captura pedidos.</p></div>
+    <div class="sec-card"><span class="sec-emoji">&#127978;</span><h3>Comercios y tiendas</h3><p>Atiende consultas de productos y captura pedidos.</p></div>
+    <div class="sec-card"><span class="sec-emoji">&#128049;</span><h3>Clinicas veterinarias</h3><p>Urgencias a cualquier hora, agenda citas sin perder ninguna llamada.</p></div>
+    <div class="sec-card"><span class="sec-emoji">&#128188;</span><h3>Asesorias y gestorias</h3><p>Filtra consultas de autonomos y empresas, agenda citas con el asesor.</p></div>
+    <div class="sec-card"><span class="sec-emoji">&#127959;</span><h3>Empresas de reformas</h3><p>Captura presupuestos urgentes antes de que vayan a la competencia.</p></div>
+    <div class="sec-card"><span class="sec-emoji">&#128663;</span><h3>Concesionarios</h3><p>Alto ticket, muchas consultas antes de comprar. Califica y agenda pruebas.</p></div>
+    <div class="sec-card"><span class="sec-emoji">&#127869;</span><h3>Restaurantes y catering</h3><p>Gestiona reservas, menus del dia y eventos desde WhatsApp.</p></div>
+    <div class="sec-card"><span class="sec-emoji">&#127807;</span><h3>Sector agricola</h3><p>Proveedores y cooperativas: consultas de socios, precios y logistica.</p></div>
+    <div class="sec-card special">
+      <div>
+        <span class="sec-emoji">&#9889;</span>
+        <h3>Tu negocio, sea cual sea</h3>
+        <p>Si no ves tu sector en la lista no te preocupes. Nos adaptamos a cualquier tipo de negocio y creamos exactamente lo que necesitas. Contactanos y lo hablamos sin compromiso.</p>
+      </div>
+      <div class="special-right">
+        <a href="https://wa.me/34602504677" class="special-btn">Hablamos &rarr;</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -448,7 +472,7 @@ footer { background: var(--ink); padding: 48px; }
       <div class="why-card">
         <div class="why-ico"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
         <h3>Somos de Almeria</h3>
-        <p>Conocemos el mercado local, hablamos con los dueños de negocios cara a cara y entendemos lo que necesitan. No somos una empresa lejana que vende software generico.</p>
+        <p>Conocemos el mercado local, hablamos con los duenos de negocios cara a cara y entendemos lo que necesitan. No somos una empresa lejana que vende software generico.</p>
       </div>
       <div class="why-card">
         <div class="why-ico"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></div>
@@ -467,7 +491,7 @@ footer { background: var(--ink); padding: 48px; }
       </div>
       <div class="why-card">
         <div class="why-ico"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg></div>
-        <h3>Soporte real en español</h3>
+        <h3>Soporte real en espanol</h3>
         <p>Cuando tienes un problema nos escribes por WhatsApp y te respondemos. Sin tickets, sin chatbots de soporte, sin esperar dias. Soporte humano y cercano.</p>
       </div>
       <div class="why-card">
@@ -483,47 +507,33 @@ footer { background: var(--ink); padding: 48px; }
   <div class="sec-inner">
     <div class="sec-hdr">
       <div>
-        <div class="lbl-wrap"><div class="lbl-dot"></div><span class="lbl">Testimonios</span></div>
-        <h2 class="h2">Lo que dicen<br><em>nuestros clientes.</em></h2>
+        <div class="lbl-wrap"><div class="lbl-dot"></div><span class="lbl">Primeros en tu sector</span></div>
+        <h2 class="h2">Se el primero<br><em>en Almeria.</em></h2>
       </div>
-      <p class="sec-p">Negocios reales de Almeria que ya trabajan con LUMVIX AI.</p>
+      <p class="sec-p">Estamos empezando y buscamos negocios pioneros que quieran liderar la automatizacion en su sector.</p>
     </div>
     <div class="testi-grid">
-      <div class="testi-card">
-        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <div class="testi-q">"</div>
-        <p class="testi-txt">Antes perdiamos consultas cada noche porque nadie podia atender el WhatsApp. Ahora el agente responde solo y ya hemos cerrado tres operaciones que habrian quedado en nada.</p>
-        <div class="testi-author">
-          <div class="testi-ava">M</div>
-          <div>
-            <div class="testi-name">Maria Gonzalez</div>
-            <div class="testi-role">Directora &middot; Inmobiliaria El Ejido</div>
-          </div>
+      <div class="testi-card" style="display:flex;flex-direction:column;justify-content:space-between;">
+        <div>
+          <div style="font-size:40px;margin-bottom:20px;">&#127942;</div>
+          <h3 style="font-family:Syne,sans-serif;font-size:20px;font-weight:700;color:var(--ink);margin-bottom:12px;letter-spacing:-0.3px;">Prueba gratis, sin riesgo</h3>
+          <p style="font-size:14px;color:var(--mid);line-height:1.7;font-weight:300;">15 dias completamente gratis para que veas los resultados tu mismo antes de decidir. Sin coste, sin permanencia, sin complicaciones.</p>
         </div>
       </div>
-      <div class="testi-card">
-        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <div class="testi-q">"</div>
-        <p class="testi-txt">Lo mejor es que el agente califica al paciente antes de que llegue a consulta. Sabemos si viene por urgencia o por revision rutinaria y organizamos mejor la agenda.</p>
-        <div class="testi-author">
-          <div class="testi-ava">J</div>
-          <div>
-            <div class="testi-name">Dr. Juan Martinez</div>
-            <div class="testi-role">Director &middot; Clinica Dental Almeria</div>
-          </div>
+      <div class="testi-card" style="display:flex;flex-direction:column;justify-content:space-between;">
+        <div>
+          <div style="font-size:40px;margin-bottom:20px;">&#128200;</div>
+          <h3 style="font-family:Syne,sans-serif;font-size:20px;font-weight:700;color:var(--ink);margin-bottom:12px;letter-spacing:-0.3px;">Resultados desde el primer dia</h3>
+          <p style="font-size:14px;color:var(--mid);line-height:1.7;font-weight:300;">El agente empieza a responder consultas en cuanto lo activamos. No hay periodo de aprendizaje ni configuracion compleja. Funciona desde el minuto uno.</p>
         </div>
       </div>
-      <div class="testi-card">
-        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <div class="testi-q">"</div>
-        <p class="testi-txt">Pensaba que iba a ser complicado pero lo configuraron todo en dos dias. Ahora el taller recibe las citas solo y yo solo me preocupo de hacer mi trabajo.</p>
-        <div class="testi-author">
-          <div class="testi-ava">A</div>
-          <div>
-            <div class="testi-name">Antonio Ruiz</div>
-            <div class="testi-role">Propietario &middot; Taller Motos Roquetas</div>
-          </div>
+      <div class="testi-card" style="display:flex;flex-direction:column;justify-content:space-between;background:var(--ink);border-color:var(--ink);">
+        <div>
+          <div style="font-size:40px;margin-bottom:20px;">&#128172;</div>
+          <h3 style="font-family:Syne,sans-serif;font-size:20px;font-weight:700;color:white;margin-bottom:12px;letter-spacing:-0.3px;">Tu negocio, el primero</h3>
+          <p style="font-size:14px;color:rgba(255,255,255,0.4);line-height:1.7;font-weight:300;">Hay pocos negocios en Almeria usando IA en WhatsApp. Los que empiezan primero tienen ventaja sobre su competencia. La pregunta es si quieres ser uno de ellos.</p>
         </div>
+        <a href="https://wa.me/34602504677" style="display:inline-block;margin-top:24px;font-family:Syne,sans-serif;font-weight:700;font-size:13px;letter-spacing:1px;padding:14px 24px;background:var(--accent);color:white;text-decoration:none;border-radius:2px;text-align:center;transition:background 0.2s;">Empezar ahora &rarr;</a>
       </div>
     </div>
   </div>
@@ -618,10 +628,10 @@ footer { background: var(--ink); padding: 48px; }
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">
-          <span class="faq-qt">&iquest;El agente responde bien en español?</span>
+          <span class="faq-qt">&iquest;El agente responde bien en espanol?</span>
           <div class="faq-ico">+</div>
         </div>
-        <div class="faq-a"><p>Si, responde en español de forma natural, con el tono de tu negocio. No suena a robot ni usa respuestas genericas, esta configurado especificamente para tu sector y tus clientes.</p></div>
+        <div class="faq-a"><p>Si, responde en espanol de forma natural, con el tono de tu negocio. No suena a robot ni usa respuestas genericas, esta configurado especificamente para tu sector y tus clientes.</p></div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">
