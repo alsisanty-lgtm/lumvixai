@@ -157,6 +157,38 @@ nav::before { content: ''; position: absolute; inset: 0; background: rgba(247,24
 .special-btn { font-family: "Syne", sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 1px; padding: 14px 28px; background: var(--accent); color: white; text-decoration: none; border-radius: 2px; transition: background 0.2s; white-space: nowrap; }
 .special-btn:hover { background: white; color: var(--ink); }
 
+/* CONTACTO */
+.contact-section { padding: 120px 48px; background: var(--paper); }
+.contact-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.contact-info { }
+.contact-channels { display: flex; flex-direction: column; gap: 16px; margin-top: 48px; }
+.contact-channel { display: flex; align-items: center; gap: 16px; padding: 20px 24px; border: 1.5px solid var(--border); border-radius: 8px; text-decoration: none; transition: all 0.2s; }
+.contact-channel:hover { border-color: var(--accent); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(13,122,82,0.08); }
+.channel-ico { width: 44px; height: 44px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.channel-ico.wa { background: #e8f7ef; }
+.channel-ico.mail { background: #e8f0f7; }
+.channel-lbl { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--mid); margin-bottom: 4px; }
+.channel-val { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--ink); }
+.channel-desc { font-size: 12px; color: var(--mid); margin-top: 2px; }
+.contact-form { background: var(--paper2); border-radius: 12px; padding: 48px 40px; border: 1.5px solid var(--border); }
+.contact-form h3 { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; color: var(--ink); margin-bottom: 8px; letter-spacing: -0.5px; }
+.contact-form p { font-size: 14px; color: var(--mid); margin-bottom: 32px; line-height: 1.6; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--mid); margin-bottom: 8px; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 14px 16px; border: 1.5px solid var(--border); border-radius: 6px; background: var(--paper); font-family: 'Inter', sans-serif; font-size: 14px; color: var(--ink); outline: none; transition: border-color 0.2s; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent); }
+.form-group textarea { resize: vertical; min-height: 120px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-submit { width: 100%; padding: 16px; background: var(--ink); color: white; border: none; border-radius: 6px; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 1px; cursor: pointer; transition: background 0.2s; margin-top: 8px; position: relative; overflow: hidden; }
+.form-submit:hover { background: var(--accent); }
+.form-success { display: none; text-align: center; padding: 20px; color: var(--accent); font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; }
+
+@media (max-width: 900px) {
+  .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+  .contact-section { padding: 80px 24px; }
+  .form-row { grid-template-columns: 1fr; }
+}
+
 /* WHY */
 .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.06); margin-top: 64px; }
 .why-card { padding: 48px 40px; background: var(--ink2); transition: background 0.3s; }
@@ -284,6 +316,7 @@ footer { background: var(--ink); padding: 48px; }
     <li><a href="#como-funciona">Proceso</a></li>
     <li><a href="#sectores">Sectores</a></li>
     <li><a href="#precios">Precios</a></li>
+    <li><a href="#contacto">Contacto</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
   <a href="https://wa.me/34602504677" class="nav-btn"><span>Prueba gratis &rarr;</span></a>
@@ -472,7 +505,7 @@ footer { background: var(--ink); padding: 48px; }
       <div class="lbl-wrap"><div class="lbl-dot"></div><span class="lbl">Sectores</span></div>
       <h2 class="h2">Para negocios<br><em>como el tuyo.</em></h2>
     </div>
-    <p class="sec-p">Adaptado a los sectores mas comunes de Almeria y toda Espana.</p>
+    <p class="sec-p">Adaptado a los sectores mas comunes de Almeria y toda España.</p>
   </div>
   <div class="sec-grid" style="grid-template-columns: repeat(4, 1fr);">
     <div class="sec-card"><span class="sec-emoji">&#127968;</span><h3>Inmobiliarias</h3><p>Califica compradores y agenda visitas automaticamente.</p></div>
@@ -633,6 +666,112 @@ footer { background: var(--ink); padding: 48px; }
     </div>
   </div>
 </div>
+
+<section class="contact-section" id="contacto">
+  <div class="contact-inner">
+    <div class="contact-info">
+      <div class="lbl-wrap"><div class="lbl-dot"></div><span class="lbl">Contacto</span></div>
+      <h2 class="h2">Hablamos<br><em>sin compromiso.</em></h2>
+      <p style="font-size:16px;color:var(--mid);line-height:1.7;margin-top:16px;font-weight:300;max-width:400px;">Tienes alguna duda o quieres saber mas antes de empezar? Escribenos y te respondemos en menos de 24 horas.</p>
+      <div class="contact-channels">
+        <a href="https://wa.me/34678583562?text=Hola%20Santy%2C%20me%20interesa%20saber%20mas%20sobre%20LUMVIX%20AI" class="contact-channel" target="_blank">
+          <div class="channel-ico wa">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#0d7a52"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
+          <div>
+            <div class="channel-lbl">WhatsApp directo</div>
+            <div class="channel-val">+34 678 58 35 62</div>
+            <div class="channel-desc">Respuesta en menos de 2 horas en horario laboral</div>
+          </div>
+        </a>
+        <a href="mailto:lumvixai@gmail.com" class="contact-channel">
+          <div class="channel-ico mail">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a5276" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="channel-lbl">Email</div>
+            <div class="channel-val">lumvixai@gmail.com</div>
+            <div class="channel-desc">Te respondemos en menos de 24 horas</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="contact-form">
+      <h3>Envianos un mensaje</h3>
+      <p>Cuentanos que necesitas y te preparamos una propuesta personalizada para tu negocio.</p>
+      <div id="contactForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" id="fname" placeholder="Tu nombre" />
+          </div>
+          <div class="form-group">
+            <label>Telefono</label>
+            <input type="tel" id="fphone" placeholder="+34 600 000 000" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="femail" placeholder="tu@email.com" />
+        </div>
+        <div class="form-group">
+          <label>Tipo de negocio</label>
+          <select id="fbiz">
+            <option value="">Selecciona tu sector...</option>
+            <option>Inmobiliaria</option>
+            <option>Clinica dental</option>
+            <option>Taller de motos o coches</option>
+            <option>Estetica o fisioterapia</option>
+            <option>Academia o formacion</option>
+            <option>Comercio o tienda</option>
+            <option>Clinica veterinaria</option>
+            <option>Asesoria o gestoria</option>
+            <option>Empresa de reformas</option>
+            <option>Concesionario</option>
+            <option>Restaurante o catering</option>
+            <option>Sector agricola</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Mensaje</label>
+          <textarea id="fmsg" placeholder="Cuentanos que necesitas o que dudas tienes..."></textarea>
+        </div>
+        <button class="form-submit" onclick="sendForm()">Enviar mensaje &rarr;</button>
+      </div>
+      <div class="form-success" id="formSuccess">
+        &#10003; Mensaje enviado. Te contactamos en menos de 24h.
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function sendForm() {
+  var name = document.getElementById('fname').value;
+  var email = document.getElementById('femail').value;
+  var phone = document.getElementById('fphone').value;
+  var biz = document.getElementById('fbiz').value;
+  var msg = document.getElementById('fmsg').value;
+  if (!name || !email) { alert('Por favor rellena al menos tu nombre y email.'); return; }
+  var wa = 'https://wa.me/34678583562?text=' + encodeURIComponent(
+    'Nuevo contacto desde lumvixai.com
+' +
+    'Nombre: ' + name + '
+' +
+    'Email: ' + email + '
+' +
+    'Telefono: ' + phone + '
+' +
+    'Sector: ' + biz + '
+' +
+    'Mensaje: ' + msg
+  );
+  window.open(wa, '_blank');
+  document.getElementById('contactForm').style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+}
+</script>
 
 <section class="sec" id="faq">
   <div class="faq-inner">
