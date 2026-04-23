@@ -225,7 +225,7 @@ nav::before { content: ''; position: absolute; inset: 0; background: rgba(247,24
 .price-list { list-style: none; margin-bottom: 40px; }
 .price-list li { font-size: 13px; color: var(--mid); padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; gap: 10px; font-weight: 300; }
 .price-card.hot .price-list li { color: rgba(255,255,255,0.5); border-bottom-color: rgba(255,255,255,0.06); }
-.price-list li::before { content: 'e2 86 92'; content: '->'; color: var(--accent); flex-shrink: 0; font-weight: 600; }
+.price-list li::before { content: '->'; color: var(--accent); flex-shrink: 0; font-weight: 600; }
 .pbtn { display: block; text-align: center; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 1px; padding: 14px; border-radius: 2px; text-decoration: none; transition: all 0.2s; }
 .pbtn-dark { background: var(--ink); color: var(--paper); }
 .pbtn-dark:hover { background: var(--accent); }
@@ -371,7 +371,6 @@ footer { background: var(--ink); padding: 48px; }
       ];
       const container = document.getElementById('chatMsgs');
       let i = 0;
-      let cycle = 0;
       function showNext() {
         if (i < msgs.length) {
           const m = msgs[i];
@@ -634,7 +633,8 @@ footer { background: var(--ink); padding: 48px; }
           <li>1 numero de WhatsApp</li>
           <li>Soporte por WhatsApp</li>
         </ul>
-        <a href="https://wa.me/34602504677" class="pbtn pbtn-out" style="color:white;border-color:rgba(255,255,255,0.2)">Empezar gratis</a>
+        <!-- ENLACE STRIPE PLAN BASICO -->
+        <a href="https://buy.stripe.com/aFa14nf0Ramda3XaEY6sw00" class="pbtn pbtn-out" style="color:white;border-color:rgba(255,255,255,0.2)">Contratar ahora</a>
       </div>
       <div class="price-card hot">
         <span class="price-tag">Plan Pro</span>
@@ -648,7 +648,8 @@ footer { background: var(--ink); padding: 48px; }
           <li>Personalizacion avanzada</li>
           <li>Soporte prioritario 24h</li>
         </ul>
-        <a href="https://wa.me/34602504677" class="pbtn pbtn-green">Empezar gratis</a>
+        <!-- ENLACE STRIPE PLAN PRO -->
+        <a href="https://buy.stripe.com/dRm14n1a13XP4JD14o6sw01" class="pbtn pbtn-green">Contratar ahora</a>
       </div>
       <div class="price-card">
         <span class="price-tag">A Medida</span>
@@ -684,13 +685,13 @@ footer { background: var(--ink); padding: 48px; }
             <div class="channel-desc">Respuesta en menos de 2 horas en horario laboral</div>
           </div>
         </a>
-        <a href="mailto:lumvixai@gmail.com" class="contact-channel">
+        <a href="mailto:santi@lumvixai.com" class="contact-channel">
           <div class="channel-ico mail">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a5276" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           </div>
           <div>
             <div class="channel-lbl">Email</div>
-            <div class="channel-val">lumvixai@gmail.com</div>
+            <div class="channel-val">santi@lumvixai.com</div>
             <div class="channel-desc">Te respondemos en menos de 24 horas</div>
           </div>
         </a>
@@ -755,16 +756,11 @@ function sendForm() {
   var msg = document.getElementById('fmsg').value;
   if (!name || !email) { alert('Por favor rellena al menos tu nombre y email.'); return; }
   var wa = 'https://wa.me/34678583562?text=' + encodeURIComponent(
-    'Nuevo contacto desde lumvixai.com
-' +
-    'Nombre: ' + name + '
-' +
-    'Email: ' + email + '
-' +
-    'Telefono: ' + phone + '
-' +
-    'Sector: ' + biz + '
-' +
+    'Nuevo contacto desde lumvixai.com\n' +
+    'Nombre: ' + name + '\n' +
+    'Email: ' + email + '\n' +
+    'Telefono: ' + phone + '\n' +
+    'Sector: ' + biz + '\n' +
     'Mensaje: ' + msg
   );
   window.open(wa, '_blank');
@@ -837,7 +833,7 @@ function sendForm() {
   <h2>&iquest;Tu negocio<br><span class="outline">trabajando</span><br><em>solo?</em></h2>
   <div class="cta-btns">
     <a href="https://wa.me/34602504677" class="btn-cta"><span>Prueba gratis 15 dias &rarr;</span></a>
-    <a href="mailto:lumvixai@gmail.com" class="btn-cta2">O escribenos por email &rarr;</a>
+    <a href="mailto:santi@lumvixai.com" class="btn-cta2">O escribenos por email &rarr;</a>
   </div>
 </section>
 
@@ -845,7 +841,7 @@ function sendForm() {
   <div class="foot-in">
     <div class="foot-brand">LUMVIX <span>AI</span> &middot; El Ejido, Almeria</div>
     <div class="foot-links">
-      <a href="mailto:lumvixai@gmail.com">lumvixai@gmail.com</a>
+      <a href="mailto:santi@lumvixai.com">santi@lumvixai.com</a>
       <a href="https://wa.me/34602504677">+34 602 50 46 77</a>
       <a href="/privacy">Privacidad</a>
     </div>
